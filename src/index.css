@@ -1,0 +1,185 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 142 40% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 142 40% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 142 40% 15%;
+
+    --primary: 142 76% 36%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 142 50% 95%;
+    --secondary-foreground: 142 76% 26%;
+
+    --muted: 80 30% 96%;
+    --muted-foreground: 142 20% 40%;
+
+    --accent: 45 93% 58%;
+    --accent-foreground: 142 40% 15%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 142 30% 85%;
+    --input: 142 30% 85%;
+    --ring: 142 76% 36%;
+
+    --radius: 1rem;
+
+    /* Custom Agro Colors */
+    --agro-green-dark: 142 76% 26%;
+    --agro-green: 142 76% 36%;
+    --agro-green-light: 142 60% 50%;
+    --agro-lime: 84 81% 44%;
+    --agro-yellow: 45 93% 58%;
+    --agro-cream: 48 100% 96%;
+
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(142 76% 26% / 0.9), hsl(142 76% 36% / 0.7));
+    --gradient-card: linear-gradient(180deg, hsl(142 60% 50%), hsl(142 76% 36%));
+    --gradient-accent: linear-gradient(135deg, hsl(84 81% 44%), hsl(142 76% 36%));
+
+    /* Shadows */
+    --shadow-card: 0 10px 40px -10px hsl(142 76% 26% / 0.2);
+    --shadow-button: 0 4px 20px -4px hsl(142 76% 36% / 0.5);
+    --shadow-glow: 0 0 40px hsl(142 76% 36% / 0.3);
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 142 30% 8%;
+    --foreground: 0 0% 98%;
+
+    --card: 142 30% 12%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 142 30% 12%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 142 76% 46%;
+    --primary-foreground: 142 40% 10%;
+
+    --secondary: 142 30% 18%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 142 30% 18%;
+    --muted-foreground: 142 20% 65%;
+
+    --accent: 45 93% 58%;
+    --accent-foreground: 142 40% 10%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 142 30% 20%;
+    --input: 142 30% 20%;
+    --ring: 142 76% 46%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-nunito antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-nunito font-bold tracking-tight;
+  }
+}
+
+@layer components {
+  .container-agro {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-padding {
+    @apply py-16 md:py-24;
+  }
+
+  .glass-card {
+    @apply bg-card/80 backdrop-blur-md border border-border/50 rounded-2xl;
+    box-shadow: var(--shadow-card);
+  }
+
+  .green-box {
+    background: var(--gradient-card);
+    @apply rounded-3xl p-8 md:p-12;
+  }
+
+  .icon-circle {
+    @apply w-12 h-12 rounded-full flex items-center justify-center;
+    background: hsl(var(--agro-lime) / 0.15);
+  }
+
+  .icon-circle-white {
+    @apply w-10 h-10 rounded-full flex items-center justify-center bg-white/20;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-accent);
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-fade-up {
+    animation: fadeUp 0.6s ease-out forwards;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.5s ease-out forwards;
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
