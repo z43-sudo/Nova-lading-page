@@ -423,10 +423,10 @@ const Blog = () => {
                             ))}
                         </div>
                     </div>
-                </section>
+                </section >
 
                 {/* Testimonials Section */}
-                <section className="section-padding bg-primary relative overflow-hidden">
+                < section className="section-padding bg-primary relative overflow-hidden" >
                     <div className="absolute inset-0 bg-gradient-to-r from-agro-green-dark/50 to-transparent" />
 
                     <div className="container-agro relative z-10">
@@ -483,10 +483,10 @@ const Blog = () => {
                             ))}
                         </div>
                     </div>
-                </section>
+                </section >
 
                 {/* How it Works Section */}
-                <section className="section-padding bg-muted">
+                < section className="section-padding bg-muted" >
                     <div className="container-agro">
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
@@ -550,10 +550,10 @@ const Blog = () => {
                             ))}
                         </div>
                     </div>
-                </section>
+                </section >
 
                 {/* CTA Section */}
-                <section className="section-padding bg-gradient-to-br from-agro-green-dark to-primary">
+                < section className="section-padding bg-gradient-to-br from-agro-green-dark to-primary" >
                     <div className="container-agro">
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
@@ -609,11 +609,11 @@ const Blog = () => {
                             </div>
                         </motion.div>
                     </div>
-                </section>
-            </main>
+                </section >
+            </main >
 
             <Footer />
-        </div>
+        </div >
     );
 };
 
