@@ -25,7 +25,7 @@ app.use(cors({
     origin: [
         process.env.VITE_APP_URL || 'http://localhost:8080',
         'http://localhost:8080',
-        ''
+        'http://localhost:5173'
     ],
     credentials: true,
 }));
@@ -68,6 +68,11 @@ app.post('/api/create-checkout-session', async (req, res) => {
                 error: 'Stripe não configurado. Configure STRIPE_SECRET_KEY no arquivo .env'
             });
         }
+
+        // Logs de depuração
+        const finalSuccessUrl = successUrl || `${process.env.VITE_APP_URL}/payment-success?session_id={CHECKOUT_SESSION_ID}`;
+        const finalCancelUrl = cancelUrl || `${process.env.VITE_APP_URL}/payment-cancel`;
+        console.log('🔗 URLs de Redirecionamento:', { finalSuccessUrl, finalCancelUrl, VITE_APP_URL: process.env.VITE_APP_URL });
 
         // Cria a sessão de checkout
         const session = await stripe.checkout.sessions.create({
