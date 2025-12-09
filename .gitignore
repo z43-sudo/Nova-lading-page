@@ -22,3 +22,13 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Environment variables (IMPORTANTE: Protege chaves do Stripe!)
+.env
+.env.local
+.env.production
+.env.development
+
+# Server node_modules
+server/node_modules
+

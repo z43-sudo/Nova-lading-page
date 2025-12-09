@@ -10,6 +10,7 @@ import {
     AccordionItem,
     AccordionTrigger,
 } from "@/components/ui/accordion";
+import { StripePaymentButton } from "@/components/StripePaymentButton";
 
 const plans = [
     {
@@ -231,15 +232,26 @@ const Precos = () => {
                                         )}
                                     </div>
 
-                                    <Button
-                                        variant={plan.highlighted ? "hero" : "default"}
-                                        size="lg"
-                                        className="w-full mb-8 group"
-                                        onClick={() => handlePlanClick(plan)}
-                                    >
-                                        {plan.ctaText}
-                                        <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
-                                    </Button>
+                                    {plan.price === "Personalizado" ? (
+                                        <Button
+                                            variant={plan.highlighted ? "hero" : "default"}
+                                            size="lg"
+                                            className="w-full mb-8 group"
+                                            onClick={() => handlePlanClick(plan)}
+                                        >
+                                            {plan.ctaText}
+                                            <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+                                        </Button>
+                                    ) : (
+                                        <div className="mb-8">
+                                            <StripePaymentButton
+                                                planKey={plan.name.toLowerCase() as 'inicial' | 'profissional'}
+                                                planName={plan.name}
+                                                ctaText={plan.ctaText}
+                                                highlighted={plan.highlighted}
+                                            />
+                                        </div>
+                                    )}
 
                                     <div className="space-y-3">
                                         {plan.features.map((feature) => (
