@@ -30,7 +30,7 @@ app.use(cors({
         FRONTEND_URL,              // URL configurada no .env (Produção ou Local)
         'http://localhost:8080',   // Sua porta local atual
         'http://localhost:5173',   // Porta padrão do Vite (fallback)
-        'https://pageproduct.vercel.app/'    // Variação local
+        'https://pageproduct.vercel.app'    // Variação local - deploy
     ],
     credentials: true,
 }));
