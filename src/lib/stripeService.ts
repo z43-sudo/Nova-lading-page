@@ -1,6 +1,10 @@
 // Serviço para criar sessões de checkout do Stripe
-const API_URL = import.meta.env.VITE_APP_URL || 'http://localhost:5173';
-const BACKEND_URL = 'http://localhost:3001'; // ⚠️ AJUSTAR para URL do seu backend em produção
+// Serviço para criar sessões de checkout do Stripe
+const API_URL = import.meta.env.VITE_APP_URL || 'http://localhost:8080';
+
+// A URL do Backend deve ser configurada via variável de ambiente para produção
+// Localmente, assume localhost:3001
+const BACKEND_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
 
 export interface CreateCheckoutSessionParams {
     priceId: string;
@@ -30,6 +34,8 @@ export async function createCheckoutSession(
     } = params;
 
     try {
+        console.log('🔄 Iniciando criação de checkout:', { priceId, planName, BACKEND_URL });
+
         const response = await fetch(`${BACKEND_URL}/api/create-checkout-session`, {
             method: 'POST',
             headers: {
