@@ -31,7 +31,7 @@ export interface StripePlan {
 export const stripePlans: Record<string, StripePlan> = {
     inicial: {
         name: 'Inicial',
-        priceId: 'prod_TZPpCD33rZMOTG', // ⚠️ SUBSTITUIR pelo ID do Stripe
+        priceId: 'price_1ScH05GYgIAmLgw9jIwTrqyj', // ⚠️ SUBSTITUIR pelo ID do Stripe
         amount: 14700, // R$ 147,00 em centavos
         currency: 'brl',
         interval: 'month',
@@ -39,7 +39,7 @@ export const stripePlans: Record<string, StripePlan> = {
     },
     profissional: {
         name: 'Profissional',
-        priceId: 'prod_TZPqKuNfnK5Q5E', // ⚠️ SUBSTITUIR pelo ID do Stripe
+        priceId: 'price_1ScH0aGYgIAmLgw9SdKDLtom', // ⚠️ SUBSTITUIR pelo ID do Stripe
         amount: 24700, // R$ 247,00 em centavos
         currency: 'brl',
         interval: 'month',
