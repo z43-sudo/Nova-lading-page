@@ -20,12 +20,17 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || '', {
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+// Define a URL da aplicação (Frontend)
+// Em produção, isso virá da variável de ambiente. Localmente, tenta 8080 ou fallback para 5173.
+const FRONTEND_URL = process.env.VITE_APP_URL || 'http://localhost:8080';
+
 // Middlewares
 app.use(cors({
     origin: [
-        process.env.VITE_APP_URL || 'http://localhost:8080',
-        'http://localhost:8080',
-        'http://localhost:5173'
+        FRONTEND_URL,              // URL configurada no .env (Produção ou Local)
+        'http://localhost:8080',   // Sua porta local atual
+        'http://localhost:5173',   // Porta padrão do Vite (fallback)
+        'https://pageproduct.vercel.app/'    // Variação local
     ],
     credentials: true,
 }));
@@ -70,9 +75,9 @@ app.post('/api/create-checkout-session', async (req, res) => {
         }
 
         // Logs de depuração
-        const finalSuccessUrl = successUrl || `${process.env.VITE_APP_URL}/payment-success?session_id={CHECKOUT_SESSION_ID}`;
-        const finalCancelUrl = cancelUrl || `${process.env.VITE_APP_URL}/payment-cancel`;
-        console.log('🔗 URLs de Redirecionamento:', { finalSuccessUrl, finalCancelUrl, VITE_APP_URL: process.env.VITE_APP_URL });
+        const finalSuccessUrl = successUrl || `${FRONTEND_URL}/payment-success?session_id={CHECKOUT_SESSION_ID}`;
+        const finalCancelUrl = cancelUrl || `${FRONTEND_URL}/payment-cancel`;
+        console.log('🔗 URLs de Redirecionamento:', { finalSuccessUrl, finalCancelUrl });
 
         // Cria a sessão de checkout
         const session = await stripe.checkout.sessions.create({
@@ -84,8 +89,8 @@ app.post('/api/create-checkout-session', async (req, res) => {
                 },
             ],
             mode: 'subscription', // ou 'payment' para pagamento único
-            success_url: successUrl || `${process.env.VITE_APP_URL}/payment-success?session_id={CHECKOUT_SESSION_ID}`,
-            cancel_url: cancelUrl || `${process.env.VITE_APP_URL}/payment-cancel`,
+            success_url: finalSuccessUrl,
+            cancel_url: finalCancelUrl,
             customer_email: customerEmail,
             metadata: {
                 planName: planName || 'N/A',
